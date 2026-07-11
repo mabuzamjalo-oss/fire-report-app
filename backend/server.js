@@ -1,0 +1,41 @@
+require('dotenv').config();
+const express = require('express');
+const http = require('http');
+const cors = require('cors');
+const { Server } = require('socket.io');
+
+const incidentRoutes = require('./routes/incidents');
+const unitRoutes = require('./routes/units');
+const uploadRoutes = require('./routes/uploads');
+
+const app = express();
+const server = http.createServer(app);
+
+// Socket.IO powers the "live" part of the dispatcher dashboard -
+// new incidents and status changes push out instantly instead of
+// the dashboard having to poll the API every few seconds.
+const io = new Server(server, {
+  cors: { origin: process.env.CORS_ORIGIN || '*' },
+});
+
+app.set('io', io); // routes can grab this via req.app.get('io') to emit events
+
+app.use(cors());
+app.use(express.json());
+app.use('/uploads', express.static(require('path').join(__dirname, 'uploads')));
+
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
+app.use('/api/incidents', incidentRoutes);
+app.use('/api/units', unitRoutes);
+app.use('/api/uploads', uploadRoutes);
+
+io.on('connection', (socket) => {
+  console.log(`Client connected: ${socket.id}`);
+  socket.on('disconnect', () => console.log(`Client disconnected: ${socket.id}`));
+});
+
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, () => {
+  console.log(`🚒 Fire report backend running on port ${PORT}`);
+});

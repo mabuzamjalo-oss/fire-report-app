@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "citizen-app",
+    "slug": "citizen-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to tell fire responders exactly where the incident is.",
+        "NSCameraUsageDescription": "We need camera access so you can show responders what the fire looks like.",
+        "NSPhotoLibraryUsageDescription": "We need photo access so you can attach a photo to your fire report."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "READ_MEDIA_IMAGES"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "We need your location to tell fire responders exactly where the incident is."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "We need photo access so you can attach a photo to your fire report.",
+          "cameraPermission": "We need camera access so you can show responders what the fire looks like."
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
