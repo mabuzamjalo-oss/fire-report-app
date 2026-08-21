@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../config/db');
+const { autoDispatch } = require('../services/aiDispatcher');
 
 // Valid forward transitions for incident status.
 // Keeping this here (not just relying on the enum) stops a dispatcher
@@ -40,7 +41,15 @@ router.post('/', async (req, res) => {
     );
 
     // Broadcast to any connected dispatcher dashboards in real time
-    req.app.get('io')?.emit('incident:new', incident);
+    const io = req.app.get('io');
+    io?.emit('incident:new', incident);
+
+    // Kick off AI auto-dispatch asynchronously — we don't await it so
+    // the citizen gets their 201 response immediately while the AI works
+    // in the background (typically takes 1-2 seconds).
+    autoDispatch(incident, io).catch((err) =>
+      console.error('AI auto-dispatch failed silently:', err.message)
+    );
 
     res.status(201).json(incident);
   } catch (err) {
@@ -146,7 +155,21 @@ router.patch('/:id/status', async (req, res) => {
     );
 
     const updated = updateResult.rows[0];
-    req.app.get('io')?.emit('incident:statusUpdate', updated);
+    const io = req.app.get('io');
+    io?.emit('incident:statusUpdate', updated);
+
+    // When incident is cleared, auto-release all assigned units back to available
+    if (newStatus === 'cleared') {
+      const released = await pool.query(
+        `UPDATE units SET status = 'available'
+         WHERE id IN (SELECT unit_id FROM assignments WHERE incident_id = $1)
+         RETURNING id, name, status`,
+        [req.params.id]
+      );
+      if (released.rows.length > 0) {
+        io?.emit('units:released', released.rows);
+      }
+    }
 
     res.json(updated);
   } catch (err) {

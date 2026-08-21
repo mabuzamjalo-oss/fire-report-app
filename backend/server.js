@@ -7,6 +7,7 @@ const { Server } = require('socket.io');
 const incidentRoutes = require('./routes/incidents');
 const unitRoutes = require('./routes/units');
 const uploadRoutes = require('./routes/uploads');
+const stationRoutes = require('./routes/stations');
 
 const app = express();
 const server = http.createServer(app);
@@ -29,6 +30,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.use('/api/incidents', incidentRoutes);
 app.use('/api/units', unitRoutes);
 app.use('/api/uploads', uploadRoutes);
+app.use('/api/stations', stationRoutes);
 
 io.on('connection', (socket) => {
   console.log(`Client connected: ${socket.id}`);

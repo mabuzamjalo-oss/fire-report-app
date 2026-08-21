@@ -204,3 +204,115 @@ body {
 .unit-status-pill.unavailable {
   background: #9e9e9e;
 }
+
+/* ── AI badge in header ──────────────────────────────────────────── */
+.ai-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff9c4;
+  font-weight: 600;
+}
+
+/* ── Alert toasts ────────────────────────────────────────────────── */
+.alert-stack {
+  position: fixed;
+  top: 64px;
+  right: 16px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 300px;
+}
+
+.alert-toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #b71c1c;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  cursor: pointer;
+  animation: alert-pop 0.25s ease-out;
+}
+.alert-toast:hover { background: #c62828; }
+
+.alert-toast-icon { font-size: 20px; flex-shrink: 0; }
+.alert-toast-body { display: flex; flex-direction: column; font-size: 13px; line-height: 1.3; flex: 1; }
+.alert-toast-dismiss {
+  background: transparent; border: none; color: rgba(255,255,255,0.8);
+  font-size: 14px; cursor: pointer; padding: 4px;
+}
+.alert-toast-dismiss:hover { color: white; }
+
+@keyframes alert-pop {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ── AI note in assignment panel ─────────────────────────────────── */
+.ai-note {
+  font-size: 12px;
+  color: #7b1fa2;
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+/* ── AI Dispatch Log ─────────────────────────────────────────────── */
+.ai-log {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ai-log-entry {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fafafa;
+  font-size: 12px;
+}
+
+.ai-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.ai-severity-badge {
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.ai-log-time {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.ai-log-units {
+  font-weight: 600;
+  color: #333;
+  margin: 4px 0;
+}
+
+.ai-log-reasoning {
+  color: #555;
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+.ai-log-message {
+  color: #7b1fa2;
+  font-style: italic;
+  margin: 4px 0 0;
+  line-height: 1.4;
+}
