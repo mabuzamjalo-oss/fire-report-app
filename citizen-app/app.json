@@ -46,7 +46,8 @@
           "photosPermission": "We need photo access so you can attach a photo to your fire report.",
           "cameraPermission": "We need camera access so you can show responders what the fire looks like."
         }
-      ]
+      ],
+      "expo-status-bar"
     ],
     "web": {
       "favicon": "./assets/favicon.png"

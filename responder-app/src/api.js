@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // Same IP-swap rule as the citizen app: if you open this on a phone/tablet,
 // replace 'localhost' with your PC's local network IP.
-const API_BASE_URL = 'http://localhost:4000/api';
-export const SOCKET_URL = 'http://localhost:4000';
+const API_BASE_URL = 'http://51.21.160.7:4000/api'
+export const SOCKET_URL = 'http://51.21.160.7:4000';
 
 const api = axios.create({ baseURL: API_BASE_URL, timeout: 10000 });
 

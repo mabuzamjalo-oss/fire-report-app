@@ -4,8 +4,8 @@ import axios from 'axios';
 // since the dashboard runs in a browser on the same machine as the backend.
 // If you ever run the dashboard from a different device, swap this for
 // your PC's local IP like we did in the citizen app.
-const API_BASE_URL = 'http://localhost:4000/api';
-export const SOCKET_URL = 'http://localhost:4000';
+const API_BASE_URL = 'http://51.21.160.7:4000/api'
+export const SOCKET_URL = 'http://51.21.160.7:4000';
 
 const api = axios.create({ baseURL: API_BASE_URL, timeout: 10000 });
 
