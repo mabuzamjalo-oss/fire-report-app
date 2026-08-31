@@ -4,10 +4,16 @@ import axios from 'axios';
 // since the dashboard runs in a browser on the same machine as the backend.
 // If you ever run the dashboard from a different device, swap this for
 // your PC's local IP like we did in the citizen app.
-const API_BASE_URL = 'https://cardinal-dreamland-clad.ngrok-free.dev/api'
-export const SOCKET_URL = 'https://cardinal-dreamland-clad.ngrok-free.dev';
+const API_BASE_URL = 'http://13.60.227.19/api'
+export const SOCKET_URL = 'http://13.60.227.19';
 
-const api = axios.create({ baseURL: API_BASE_URL, timeout: 10000 });
+const api = axios.create({ 
+  baseURL: API_BASE_URL, 
+  timeout: 10000,
+  headers: {
+    'ngrok-skip-browser-warning': 'true'
+  }
+});
 
 export async function getIncidents(status) {
   const params = status ? { status } : {};
