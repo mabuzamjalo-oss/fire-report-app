@@ -108,7 +108,12 @@ export default function App() {
 
   useEffect(() => {
     loadData();
-    const socket = io(SOCKET_URL);
+    const socket = io(SOCKET_URL, {
+  extraHeaders: {
+    'ngrok-skip-browser-warning': 'true'
+  },
+  transports: ['websocket', 'polling']
+});
 
     socket.on('connect',    () => setConnected(true));
     socket.on('disconnect', () => setConnected(false));
