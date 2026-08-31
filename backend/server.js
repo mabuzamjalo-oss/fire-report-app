@@ -13,12 +13,19 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: process.env.CORS_ORIGIN || '*' },
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST'],
+  },
 });
 
 app.set('io', io);
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning'],
+}));
 
 // Skip ngrok browser warning page so API calls work directly
 app.use((req, res, next) => {
