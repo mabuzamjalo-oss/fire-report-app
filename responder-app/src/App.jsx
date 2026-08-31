@@ -48,7 +48,12 @@ export default function App() {
 
   useEffect(() => {
     loadIncidents();
-    const socket = io(SOCKET_URL);
+    const socket = io(SOCKET_URL, {
+  extraHeaders: {
+    'ngrok-skip-browser-warning': 'true'
+  },
+  transports: ['websocket', 'polling']
+});
     socket.on('incident:assigned', loadIncidents);
     socket.on('incident:statusUpdate', loadIncidents);
     return () => socket.disconnect();

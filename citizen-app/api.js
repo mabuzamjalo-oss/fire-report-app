@@ -4,7 +4,7 @@ import axios from 'axios';
 // the phone itself, not your PC. Replace this with your PC's local network
 // IP address (find it on Windows with `ipconfig`, look for IPv4 Address).
 // Example: 'http://192.168.1.42:4000/api'
-const API_BASE_URL = 'http://51.21.160.7:4000/api'
+const API_BASE_URL = 'https://cardinal-dreamland-clad.ngrok-free.dev/api'
 
 const api = axios.create({
   baseURL: API_BASE_URL,
