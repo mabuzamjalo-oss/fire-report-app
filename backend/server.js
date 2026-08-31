@@ -12,16 +12,20 @@ const stationRoutes = require('./routes/stations');
 const app = express();
 const server = http.createServer(app);
 
-// Socket.IO powers the "live" part of the dispatcher dashboard -
-// new incidents and status changes push out instantly instead of
-// the dashboard having to poll the API every few seconds.
 const io = new Server(server, {
   cors: { origin: process.env.CORS_ORIGIN || '*' },
 });
 
-app.set('io', io); // routes can grab this via req.app.get('io') to emit events
+app.set('io', io);
 
 app.use(cors());
+
+// Skip ngrok browser warning page so API calls work directly
+app.use((req, res, next) => {
+  res.setHeader('ngrok-skip-browser-warning', 'true');
+  next();
+});
+
 app.use(express.json());
 app.use('/uploads', express.static(require('path').join(__dirname, 'uploads')));
 
