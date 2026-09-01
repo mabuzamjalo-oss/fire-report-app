@@ -56,6 +56,8 @@ export default function App() {
 });
     socket.on('incident:assigned', loadIncidents);
     socket.on('incident:statusUpdate', loadIncidents);
+    socket.on('ai:dispatched', loadIncidents);
+    socket.on('units:released', loadIncidents);
     return () => socket.disconnect();
   }, [loadIncidents]);
 
