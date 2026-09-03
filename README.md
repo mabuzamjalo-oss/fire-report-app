@@ -8,7 +8,7 @@ A full-stack, real-time incident-to-dispatch pipeline built for the South Africa
 
 ## Why this exists
 
-South Africa's municipal fire services face a well-documented set of pressures: ageing infrastructure, unreliable water supply, and — critically — a lack of integrated data systems for reporting and dispatch. In 2022 alone, South Africa recorded over 32,000 fires across 36 municipal fire services, resulting in R4.2 billion in losses and 485 fatalities. Every minute a dispatcher spends interpreting a panicked phone call instead of seeing a precise location and category on a map is a minute a fire has to grow.
+South Africa's municipal fire services face a well-documented set of pressures: ageing infrastructure, unreliable water supply, and critically a lack of integrated data systems for reporting and dispatch. In 2022 alone, South Africa recorded over 32,000 fires across 36 municipal fire services, resulting in R4.2 billion in losses and 485 fatalities. Every minute a dispatcher spends interpreting a panicked phone call instead of seeing a precise location and category on a map is a minute a fire has to grow.
 
 This project is a working prototype of what a modern reporting-to-dispatch pipeline could look like: GPS-precise, category-structured, and live — not a phone call and a paper log.
 
