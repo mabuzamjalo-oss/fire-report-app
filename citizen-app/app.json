@@ -1,19 +1,14 @@
 {
   "expo": {
-    "name": "citizen-app",
+    "name": "Cape Town Fire Rescue",
     "slug": "citizen-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.sinemihlali.firerescue",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "We need your location to tell fire responders exactly where the incident is.",
         "NSCameraUsageDescription": "We need camera access so you can show responders what the fire looks like.",
@@ -25,13 +20,13 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
       "permissions": [
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION",
-        "CAMERA",
-        "READ_MEDIA_IMAGES"
-      ]
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.CAMERA",
+        "android.permission.READ_MEDIA_IMAGES"
+      ],
+      "package": "com.sinemihlali.firerescue"
     },
     "plugins": [
       [
@@ -51,6 +46,11 @@
     ],
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "772b4622-049d-4b6d-b031-c881f09de34f"
+      }
     }
   }
 }
